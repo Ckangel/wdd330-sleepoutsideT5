@@ -37,3 +37,34 @@ const dataSource = new ProductData('tents');
 const productId = getParam('product');
 
 console.log(dataSource.findProductById(productId));
+
+import products from './tents.json' assert { type: 'json' };
+
+document.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('id');
+
+  const product = products.find(item => item.Id === productId);
+  
+  if (product) {
+    document.getElementById('product-title').innerText = `Sleep Outside | ${product.Name}`;
+    document.getElementById('product-brand').innerText = product.Brand.Name;
+    document.getElementById('product-name').innerText = product.Name;
+    document.getElementById('product-image').src = product.Image;
+
+    // Display price and discount information
+    const originalPrice = parseFloat(product.ListPrice).toFixed(2);
+    const discountedPrice = product.discountedPrice ? parseFloat(product.discountedPrice).toFixed(2) : originalPrice;
+    const discountAmount = (originalPrice - discountedPrice).toFixed(2);
+
+    document.getElementById('product-price').innerText = `$${originalPrice}`;
+    document.getElementById('product-discounted-price').innerText = `$${discountedPrice}`;
+    document.getElementById('product-discount-amount').innerText = `You save: $${discountAmount}`;
+
+    document.getElementById('product-color').innerText = product.Colors[0].ColorName; // Assuming the first color is displayed
+    document.getElementById('product-description').innerHTML = product.DescriptionHtmlSimple; // Use innerHTML for HTML content
+    document.getElementById('addToCart').setAttribute('data-id', product.Id);
+  } else {
+    console.error('Product not found');
+  }
+});
