@@ -25,4 +25,24 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
+function displayCartTotal() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  if (cartItems.length > 0) {
+    const total = cartItems.reduce(
+      (sum, item) => sum + Number(item.FinalPrice),
+      0,
+    );
+
+    const template = document.getElementById("cart-footer-template");
+    const clone = template.content.cloneNode(true);
+    clone.querySelector(".cart-total-value").textContent = total.toFixed(2);
+
+    document.getElementById("cart-footer-container").appendChild(clone);
+  }
+}
+
+window.addEventListener("load", () => {
+  displayCartTotal();
+});
+
 renderCartContents();

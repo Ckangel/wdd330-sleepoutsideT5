@@ -261,3 +261,10 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.cart-footer {
+  text-align: right;
+  margin-top: 1em;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
