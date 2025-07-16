@@ -29,3 +29,11 @@ async function addToCartHandler(e) {
 }
 
 document.getElementById("addToCart").addEventListener("click", addToCartHandler);
+
+import { setLocalStorage, getParam } from './utils.mjs';
+import ProductData from './ProductData.mjs';
+
+const dataSource = new ProductData('tents');
+const productId = getParam('product');
+
+console.log(dataSource.findProductById(productId));
