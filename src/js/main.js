@@ -1,8 +1,8 @@
 import ProductList from './js/ProductList.mjs';
-import ProductData from './js/ProductData.js'; // Adjust path if needed
+import ProductData from './js/ProductData.mjs';
 
-const dataSource = new ProductData();
-const productListElement = document.querySelector('#product-list'); // Make sure you have a <ul id="product-list"></ul> in your HTML
+const dataSource = new ProductData('tents'); // Pass the correct category!
+const productListElement = document.querySelector('#product-list');
 const productList = new ProductList('tents', dataSource, productListElement);
 
 productList.init();
@@ -15,8 +15,22 @@ searchForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const query = searchInput.value.trim();
   if (query) {
-    // Assuming your ProductData has a search method, otherwise filter manually
-    const results = await dataSource.search(query); // Implement this in ProductData
-    productList.renderList(results);
+    const allProducts = await dataSource.getData();
+    console.log('Query:', query);
+    console.log('All products:', allProducts);
+    if (!Array.isArray(allProducts)) {
+      alert('Product data is not an array. Check your JSON file format.');
+      return;
+    }
+    const found = allProducts.find(product =>
+      (product.Name && product.Name.toLowerCase().includes(query.toLowerCase())) ||
+      (product.Brand && product.Brand.toLowerCase().includes(query.toLowerCase()))
+    );
+    console.log('Found product:', found);
+    if (found) {
+      window.location.href = `product_pages/?product=${found.Id}`;
+    } else {
+      alert('No product found matching your search.');
+    }
   }
 });
