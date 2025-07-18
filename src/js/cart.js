@@ -8,7 +8,7 @@ function renderCartContents() {
     productList.innerHTML = `<p class="empty-cart">🛒 Your cart is empty.</p>`;
     return;
   }
-  
+
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   attachRemoveListeners();
