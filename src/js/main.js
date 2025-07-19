@@ -1,7 +1,10 @@
-import ProductList from './js/ProductList.mjs';
-import ProductData from './js/ProductData.mjs';
+import ProductList from './ProductList.mjs';
+import ProductData from './ProductData.mjs';
+import { loadHeaderFooter } from './utils.mjs';
 
-const dataSource = new ProductData('tents'); // Pass the correct category!
+loadHeaderFooter();
+
+const dataSource = new ProductData('tents');
 const productListElement = document.querySelector('#product-list');
 const productList = new ProductList('tents', dataSource, productListElement);
 
