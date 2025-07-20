@@ -1,11 +1,13 @@
+import { getLocalStorage, loadHeaderFooter, qs, setLocalStorage } from './utils.mjs';
 import ProductList from './js/ProductList.mjs';
 import ProductData from './js/ProductData.js'; // Adjust path if needed
 
 const dataSource = new ProductData();
 const productListElement = document.querySelector('#product-list'); // Make sure you have a <ul id="product-list"></ul> in your HTML
 const productList = new ProductList('tents', dataSource, productListElement);
-
 productList.init();
+
+loadHeaderFooter();
 
 // Search form handling
 const searchForm = document.getElementById('searchForm');
