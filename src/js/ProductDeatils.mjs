@@ -1,4 +1,5 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage,  } from "./utils.mjs";
+
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -29,12 +30,12 @@ export default class ProductDetails {
       cartItems = [];
   }
 
-    // Optional: prevent duplicates
+    // prevent duplicates
     const exists = cartItems.find(item => item.Id === this.product.Id);
     if (exists) {
       alert("Product is already in the cart.");
       return;
-    }
+    } 
 
     cartItems.push(this.product);
     setLocalStorage("so-cart", cartItems);
