@@ -1,7 +1,6 @@
 
-import { renderListWithTemplate, loadHeaderFooter } from "./utils.mjs";
+import { renderListWithTemplate} from "./utils.mjs";
 
-loadHeaderFooter();
 
 function productCardTemplate(product) {
   return `
