@@ -1,3 +1,7 @@
+import data from "./data.json"; // JSON import
+import styles from "./style.css"; // CSS import
+import icon from "./icon.svg"; // SVG import
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
