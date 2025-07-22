@@ -41,7 +41,6 @@ export function renderListWithTemplate(template, parentElement, list, position =
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-<<<<<<< HEAD
 export function renderWithTemplate(template, parentElement, data, callback, position = "afterbegin", clear = false) {
   // If clear is true, clear out the contents of the parent.
   if (clear) {
@@ -52,17 +51,10 @@ export function renderWithTemplate(template, parentElement, data, callback, posi
   // If a callback is provided, call it
   if (callback) {
     callback();
-=======
-export function renderWithTemplate(template, parentElement, data, callback) {
-  parentElement.innerHTML = template;
-  if (callback) {
-    callback(data);
->>>>>>> origin/DAA--individual-3
   }
 }
 
 export async function loadTemplate(path) {
-<<<<<<< HEAD
   const response = await fetch(path);
   if (!response.ok) {
     throw new Error(`Failed to load template from ${path}: ${response.statusText}`);
@@ -84,20 +76,3 @@ export async function loadHeaderFooter() {
   renderWithTemplate(() => headerHTML, headerElement, {});
   renderWithTemplate(() => footerHTML, footerElement, {});
 }
-=======
-  const res = await fetch(path);
-  const template = await res.text();
-  return template;
-}
-
-export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("/partials/header.html");
-  const footerTemplate = await loadTemplate("/partials/footer.html");
-
-  const headerElement = document.getElementById("main-header");
-  const footerElement = document.getElementById("main-footer");
-
-  renderWithTemplate(headerTemplate, headerElement);
-  renderWithTemplate(footerTemplate, footerElement);
-}
->>>>>>> origin/DAA--individual-3
