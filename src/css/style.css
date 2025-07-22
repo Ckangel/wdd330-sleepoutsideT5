@@ -261,24 +261,3 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
-
-.price-container {
-  display: flex;
-  flex-direction: column;
-  margin: 10px 0;
-}
-
-.product-card__price {
-  text-decoration: line-through; /* Original price crossed out */
-  color: red; /* Color for original price */
-}
-
-.product-card__discounted-price {
-  font-size: 1.5em; /* Larger font for discounted price */
-  color: green; /* Color for discounted price */
-}
-
-.product-card__discount-amount {
-  font-weight: bold; /* Bold text for discount amount */
-  color: orange; /* Color for discount amount */
-}
