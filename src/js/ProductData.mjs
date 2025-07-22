@@ -20,7 +20,8 @@ export default class ProductData {
     const products = await this.getData();
     return products.find((item) => item.Id === id);
   }
-   async search(query) {
+
+  async search(query) {
     const allProducts = await this.getData(); // getData should return all products if no category is passed
     return allProducts.filter(product =>
       product.Name.toLowerCase().includes(query.toLowerCase()) ||

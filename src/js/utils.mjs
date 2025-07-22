@@ -41,26 +41,38 @@ export function renderListWithTemplate(template, parentElement, list, position =
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-export function renderWithTemplate(template, parentElement, data, callback) {
-  parentElement.innerHTML = template;
+export function renderWithTemplate(template, parentElement, data, callback, position = "afterbegin", clear = false) {
+  // If clear is true, clear out the contents of the parent.
+  if (clear) {
+    parentElement.innerHTML = "template";
+  }
+  // Insert the template (for a single data object, not a list)
+  parentElement.insertAdjacentHTML(position, template(data));
+  // If a callback is provided, call it
   if (callback) {
-    callback(data);
+    callback();
   }
 }
 
 export async function loadTemplate(path) {
-  const res = await fetch(path);
-  const template = await res.text();
-  return template;
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Failed to load template from ${path}: ${response.statusText}`);
+  }
+  const html = await response.text();
+  return html;
 }
 
 export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("/partials/header.html");
-  const footerTemplate = await loadTemplate("/partials/footer.html");
+  // Load header and footer templates
+  const headerHTML = await loadTemplate('/partials/header.html');
+  const footerHTML = await loadTemplate('/partials/footer.html');
 
-  const headerElement = document.getElementById("main-header");
-  const footerElement = document.getElementById("main-footer");
+  // Get header and footer placeholder elements
+  const headerElement = document.querySelector('header');
+  const footerElement = document.querySelector('footer');
 
-  renderWithTemplate(headerTemplate, headerElement);
-  renderWithTemplate(footerTemplate, footerElement);
+  // Render header and footer
+  renderWithTemplate(() => headerHTML, headerElement, {});
+  renderWithTemplate(() => footerHTML, footerElement, {});
 }
