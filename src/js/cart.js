@@ -1,6 +1,10 @@
+<<<<<<< HEAD
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+=======
 
 import { getLocalStorage, setLocalStorage, loadHeaderFooter } from "./utils.mjs";
 
+>>>>>>> origin/DAA--individual-3
 loadHeaderFooter();
 
 function renderCartContents() {
