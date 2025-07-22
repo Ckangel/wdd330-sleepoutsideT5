@@ -20,12 +20,22 @@ export default class ProductData {
     const products = await this.getData();
     return products.find((item) => item.Id === id);
   }
+<<<<<<< HEAD
 
   async search(query) {
+=======
+   async search(query) {
+>>>>>>> origin/DAA--individual-3
     const allProducts = await this.getData(); // getData should return all products if no category is passed
     return allProducts.filter(product =>
       product.Name.toLowerCase().includes(query.toLowerCase()) ||
       product.Brand.toLowerCase().includes(query.toLowerCase())
     );
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/DAA--individual-3
 }
+
+

@@ -1,11 +1,23 @@
+<<<<<<< HEAD
 import { getParam, loadHeaderFooter  } from './utils.mjs';
 import ProductData from "./ProductData.mjs";
 
 loadHeaderFooter();
 
+=======
+
+import { getParam, loadHeaderFooter  } from "./utils.mjs";
+import ProductData from "./ProductData.mjs";
+import ProductDetails from "./ProductDetails.mjs";
+
+loadHeaderFooter();
+
+const productId = getParam("product");
+>>>>>>> origin/DAA--individual-3
 const dataSource = new ProductData("tents");
 const productId = getParam("product");
 
+<<<<<<< HEAD
 function addProductToCart(product) {
   let cartItems = getLocalStorage("so-cart") || [];
 
@@ -82,3 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Product not found");
   }
 });
+=======
+const product = new ProductDetails(productId, dataSource);
+product.init();
+>>>>>>> origin/DAA--individual-3
