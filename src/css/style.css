@@ -246,6 +246,54 @@ button {
   font-size: 1.2rem;
   font-weight: bold;
 }
+/* Product search bar styles */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-left: 2em;
+}
+
+.search-bar input[type="text"] {
+  padding: 0.5em 1em;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  font-size: 1em;
+  width: 200px;
+  transition: border-color 0.2s;
+}
+
+.search-bar input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.search-bar button {
+  padding: 0.5em 1.5em;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.search-bar button:hover {
+  background-color: var(--secondary-color);
+}
+
+.remove-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 0.5em auto 0;
+  display: block;
+  text-align: center;
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -266,3 +314,5 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+
