@@ -23,24 +23,29 @@ export default class ProductDetails {
   }
 
   addProductToCart() {
-    let cartItems = getLocalStorage("so-cart") || [];
+  let cartItems = getLocalStorage("so-cart") || [];
 
-    // Ensure it's an array
-    if (!Array.isArray(cartItems)) {
-      cartItems = [];
+  // Ensure it's an array
+  if (!Array.isArray(cartItems)) {
+    cartItems = [];
   }
 
-    // prevent duplicates
-    const exists = cartItems.find(item => item.Id === this.product.Id);
-    if (exists) {
-      alert("Product is already in the cart.");
-      return;
-    } 
-
-    cartItems.push(this.product);
+  // Check if product is already in the cart
+  const existingItem = cartItems.find(item => item.Id === this.product.Id);
+  if (existingItem) {
+    // Increment quantity if already in cart
+    existingItem.quantity = (existingItem.quantity || 1) + 1;
     setLocalStorage("so-cart", cartItems);
-    alert("Product added to cart.");
+    alert("Product quantity updated in cart.");
+    return;
   }
+
+  // Add new product with quantity 1
+  const productToAdd = { ...this.product, quantity: 1 };
+  cartItems.push(productToAdd);
+  setLocalStorage("so-cart", cartItems);
+  alert("Product added to cart.");
+}
 
     renderProductDetails() {
     productDetailsTemplate(this.product);

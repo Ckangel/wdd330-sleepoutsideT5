@@ -14,7 +14,8 @@ function renderCartContents() {
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
-  addRemoveEventListeners(); // Add remove button listeners
+  addRemoveEventListeners();
+  addQuantityChangeListeners();
 }
 
 function cartItemTemplate(item) {
@@ -24,11 +25,19 @@ function cartItemTemplate(item) {
     </a>
     <a href="#"><h2 class="card__name">${item.Name}</h2></a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: 1</p>
+    
+    <div class="cart-card__quantity-group">
+      <label for="qty-${item.Id}">Qty:</label>
+      <input type="number" id="qty-${item.Id}" class="cart-qty-input" data-id="${item.Id}" min="1" value="${item.quantity || 1}" />
+    </div>
+
     <p class="cart-card__price">$${item.FinalPrice}</p>
-    <button class="remove-button" data-id="${item.Id}">Remove</button>
+    <div class="remove-button-container">
+      <button class="remove-button" data-id="${item.Id}">Remove</button>
+    </div>
   </li>`;
 }
+
 
 function addRemoveEventListeners() {
   document.querySelectorAll(".remove-button").forEach((button) => {
@@ -47,14 +56,42 @@ function removeItemFromCart(productId) {
   displayCartTotal();
 }
 
+function addQuantityChangeListeners() {
+  document.querySelectorAll(".cart-qty-input").forEach((input) => {
+    input.addEventListener("change", (e) => {
+      const productId = e.target.dataset.id;
+      let newQty = parseInt(e.target.value);
+
+      if (isNaN(newQty) || newQty < 1) {
+        newQty = 1;
+        e.target.value = 1;
+      }
+
+      updateItemQuantity(productId, newQty);
+    });
+  });
+}
+
+function updateItemQuantity(productId, newQty) {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const index = cartItems.findIndex((item) => item.Id === productId);
+
+  if (index !== -1) {
+    cartItems[index].quantity = newQty;
+    setLocalStorage("so-cart", cartItems);
+    renderCartContents(); // rerender to reflect quantity
+    displayCartTotal();   // update total
+  }
+}
+
 function displayCartTotal() {
   const cartItems = getLocalStorage("so-cart") || [];
   const container = document.getElementById("cart-footer-container");
-  container.innerHTML = ""; // clear previous
+  container.innerHTML = "";
 
   if (cartItems.length > 0) {
     const total = cartItems.reduce(
-      (sum, item) => sum + Number(item.FinalPrice),
+      (sum, item) => sum + Number(item.FinalPrice) * (item.quantity || 1),
       0
     );
 
