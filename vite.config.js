@@ -1,14 +1,11 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 
-import svgr from 'vite-plugin-svgr';
-
-export default {
-  plugins: [svgr()],
-};
+import svgr from "vite-plugin-svgr";
 
 export default defineConfig({
   root: "src/",
+  plugins: [svgr()],
 
   build: {
     outDir: "../dist",
@@ -22,5 +19,3 @@ export default defineConfig({
     },
   },
 });
-
-

@@ -37,12 +37,6 @@ document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
 
-import { getParam } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
-
-const dataSource = new ProductData("tents");
-const productId = getParam("product");
-
 console.log(dataSource.findProductById(productId));
 
 import products from "./tents.json" assert { type: "json" };

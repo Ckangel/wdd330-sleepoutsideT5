@@ -31,10 +31,16 @@ export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param);
-  return product
+  return product;
 }
 
-export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
+export function renderListWithTemplate(
+  template,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false,
+) {
   const htmlStrings = list.map(template);
   // if clear is true we need to clear out the contents of the parent.
   if (clear) {
@@ -43,7 +49,14 @@ export function renderListWithTemplate(template, parentElement, list, position =
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-export function renderWithTemplate(template, parentElement, data, callback, position = "afterbegin", clear = false) {
+export function renderWithTemplate(
+  template,
+  parentElement,
+  data,
+  callback,
+  position = "afterbegin",
+  clear = false,
+) {
   // If clear is true, clear out the contents of the parent.
   if (clear) {
     parentElement.innerHTML = "template";
@@ -59,7 +72,9 @@ export function renderWithTemplate(template, parentElement, data, callback, posi
 export async function loadTemplate(path) {
   const response = await fetch(path);
   if (!response.ok) {
-    throw new Error(`Failed to load template from ${path}: ${response.statusText}`);
+    throw new Error(
+      `Failed to load template from ${path}: ${response.statusText}`,
+    );
   }
   const html = await response.text();
   return html;
@@ -67,12 +82,12 @@ export async function loadTemplate(path) {
 
 export async function loadHeaderFooter() {
   // Load header and footer templates
-  const headerHTML = await loadTemplate('/partials/header.html');
-  const footerHTML = await loadTemplate('/partials/footer.html');
+  const headerHTML = await loadTemplate("/partials/header.html");
+  const footerHTML = await loadTemplate("/partials/footer.html");
 
   // Get header and footer placeholder elements
-  const headerElement = document.querySelector('header');
-  const footerElement = document.querySelector('footer');
+  const headerElement = document.querySelector("header");
+  const footerElement = document.querySelector("footer");
 
   // Render header and footer
   renderWithTemplate(() => headerHTML, headerElement, {});
