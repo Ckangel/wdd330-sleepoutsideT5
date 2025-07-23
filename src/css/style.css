@@ -259,7 +259,6 @@ button {
   text-align: center;
 }
 
-
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -280,7 +279,6 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
-
 
 /* Product search bar styles */
 .search-bar {
