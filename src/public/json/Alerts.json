@@ -1,0 +1,19 @@
+[
+  {
+    "message": "This is only a test",
+    "background": "darkblue",
+    "color": "white"
+  },
+  {
+    "message": "New products arriving next week!",
+    "background": "green",
+    "color": "white"
+  },
+
+  {
+  "message": "Summer Sale - 20% Off Tents!",
+  "background": "gradient",
+  "color": "white",
+  "class": "sale-alert"
+}
+]
