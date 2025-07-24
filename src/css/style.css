@@ -310,52 +310,27 @@ button {
   text-align: center;
 }
 
-
-/* Product Categories Section Styling */
-.categories {
-  text-align: center;
-  margin-top: 2em;
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 0.5em;
+  font-size: 0.95em;
 }
 
-/* Grid layout for the category cards */
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1.5em;
-  padding: 1em;
-  justify-items: center;
-}
-
-/* Style for each individual category card */
-.category-card {
-  text-decoration: none;
-  color: #333;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1em;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  width: 100%;
-  max-width: 160px;
-  background-color: #f9f9f9;
-}
-
-/* Add hover effect to make cards interactive */
-.category-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Style for the category icons */
-.category-card img {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 0.5em;
-}
-
-/* Style for the category text */
-.category-card p {
+.final-price {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.2em;
+  color: #1a1a1a;
+}
+
+.discount-badge {
+  display: inline-block;
+  background-color: #dc3545;
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-size: 0.85em;
+  margin-left: 0.5em;
 }
 
 @media screen and (min-width: 500px) {

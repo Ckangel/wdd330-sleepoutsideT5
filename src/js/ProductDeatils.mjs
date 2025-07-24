@@ -1,5 +1,4 @@
-import { getLocalStorage, setLocalStorage,  } from "./utils.mjs";
-
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -25,44 +24,56 @@ export default class ProductDetails {
   addProductToCart() {
   let cartItems = getLocalStorage("so-cart") || [];
 
-  // Ensure it's an array
-  if (!Array.isArray(cartItems)) {
-    cartItems = [];
-  }
+    if (!Array.isArray(cartItems)) {
+      cartItems = [];
+    }
 
-  // Check if product is already in the cart
-  const existingItem = cartItems.find(item => item.Id === this.product.Id);
-  if (existingItem) {
-    // Increment quantity if already in cart
-    existingItem.quantity = (existingItem.quantity || 1) + 1;
+    const exists = cartItems.find(item => item.Id === this.product.Id);
+    if (exists) {
+      alert("Product is already in the cart.");
+      return;
+    }
+
+    cartItems.push(this.product);
     setLocalStorage("so-cart", cartItems);
     alert("Product quantity updated in cart.");
     return;
   }
 
-  // Add new product with quantity 1
-  const productToAdd = { ...this.product, quantity: 1 };
-  cartItems.push(productToAdd);
-  setLocalStorage("so-cart", cartItems);
-  alert("Product added to cart.");
-}
-
-    renderProductDetails() {
+  renderProductDetails() {
     productDetailsTemplate(this.product);
   }
 }
 
 function productDetailsTemplate(product) {
+  // Set product name and brand
   document.querySelector("h2").textContent = product.Brand.Name;
   document.querySelector("h3").textContent = product.NameWithoutBrand;
 
+  // Set image
   const productImage = document.getElementById("productImage");
   productImage.src = product.Image;
   productImage.alt = product.NameWithoutBrand;
 
-  document.getElementById("productPrice").textContent = product.FinalPrice;
+  // Pricing logic
+  const finalPrice = parseFloat(product.FinalPrice);
+  const retailPrice = parseFloat(product.SuggestedRetailPrice);
+
+  document.getElementById("productPrice").textContent = `$${finalPrice.toFixed(2)}`;
+
+  // Display discount if available
+  if (retailPrice > finalPrice) {
+    const discount = retailPrice - finalPrice;
+    const discountPercent = Math.round((discount / retailPrice) * 100);
+
+    document.getElementById("originalPrice").textContent = `$${retailPrice.toFixed(2)}`;
+    document.getElementById("discountBadge").textContent = `${discountPercent}% Off`;
+  }
+
+  // Color and description
   document.getElementById("productColor").textContent = product.Colors[0].ColorName;
   document.getElementById("productDesc").innerHTML = product.DescriptionHtmlSimple;
 
+  // Set Add to Cart button dataset
   document.getElementById("addToCart").dataset.id = product.Id;
 }
