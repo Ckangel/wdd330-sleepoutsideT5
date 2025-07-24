@@ -1,4 +1,3 @@
-
 loadHeaderFooter();
 
 function renderCartContents() {
