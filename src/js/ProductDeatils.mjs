@@ -1,5 +1,7 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
+import { getLocalStorage, setLocalStorage , loadHeaderFooter, updateCartCount } from "./utils.mjs";
+loadHeaderFooter();
+updateCartCount();
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
@@ -36,6 +38,7 @@ export default class ProductDetails {
 
     cartItems.push(this.product);
     setLocalStorage("so-cart", cartItems);
+     updateCartCount();
     alert("Product quantity updated in cart.");
     return;
   }
@@ -44,36 +47,30 @@ export default class ProductDetails {
     productDetailsTemplate(this.product);
   }
 }
-
 function productDetailsTemplate(product) {
-  // Set product name and brand
   document.querySelector("h2").textContent = product.Brand.Name;
   document.querySelector("h3").textContent = product.NameWithoutBrand;
 
-  // Set image
   const productImage = document.getElementById("productImage");
   productImage.src = product.Image;
   productImage.alt = product.NameWithoutBrand;
 
-  // Pricing logic
-  const finalPrice = parseFloat(product.FinalPrice);
-  const retailPrice = parseFloat(product.SuggestedRetailPrice);
-
-  document.getElementById("productPrice").textContent = `$${finalPrice.toFixed(2)}`;
-
-  // Display discount if available
-  if (retailPrice > finalPrice) {
-    const discount = retailPrice - finalPrice;
-    const discountPercent = Math.round((discount / retailPrice) * 100);
-
-    document.getElementById("originalPrice").textContent = `$${retailPrice.toFixed(2)}`;
-    document.getElementById("discountBadge").textContent = `${discountPercent}% Off`;
-  }
-
-  // Color and description
+  document.getElementById("productPrice").textContent = `$${product.FinalPrice}`;
   document.getElementById("productColor").textContent = product.Colors[0].ColorName;
   document.getElementById("productDesc").innerHTML = product.DescriptionHtmlSimple;
 
-  // Set Add to Cart button dataset
   document.getElementById("addToCart").dataset.id = product.Id;
+
+  // Calculate and display discount if applicable
+  if (product.SuggestedRetailPrice > product.FinalPrice) {
+    const discountAmount = (product.SuggestedRetailPrice - product.FinalPrice).toFixed(2);
+    const discountPercent = Math.round((discountAmount / product.SuggestedRetailPrice) * 100);
+
+    const discountFlag = document.createElement("div");
+    discountFlag.classList.add("discount-flag");
+    discountFlag.textContent = `Save $${discountAmount} (${discountPercent}%)`;
+
+    // Insert the flag near the product image
+    productImage.parentElement.insertBefore(discountFlag, productImage);
+  }
 }

@@ -63,3 +63,15 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
 }
+
+
+export function updateCartCount() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const count = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  const countElement = document.getElementById("cart-count");
+
+  if (countElement) {
+    countElement.textContent = count;
+    countElement.style.display = count > 0 ? "inline-block" : "none";
+  }
+}

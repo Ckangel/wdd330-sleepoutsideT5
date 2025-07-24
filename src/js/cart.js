@@ -1,6 +1,7 @@
-import { getLocalStorage, setLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, loadHeaderFooter, updateCartCount} from "./utils.mjs";
 
 loadHeaderFooter();
+updateCartCount(); 
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];

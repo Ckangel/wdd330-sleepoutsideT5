@@ -1,18 +1,28 @@
-import { renderListWithTemplate } from "./utils.mjs";
 
 
+import {  renderListWithTemplate, loadHeaderFooter, updateCartCount } from "./utils.mjs";
+
+loadHeaderFooter();
+updateCartCount();
 function productCardTemplate(product) {
-  return `
-    <li class="product-card">
-      <a href="product_pages/?products=${product.Id}">
-        <img src="${product.Image}" alt="${product.Name}">
-        <h2>${product.Brand.Name}</h2>
-        <h3>${product.Name}</h3>
-        <p class="product-card__price">$${product.FinalPrice}</p>
-      </a>
-    </li>
-    `;
+  const discount = Math.round(
+    ((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100
+  );
+
+  return `<li class="product-card">
+    <a href="product_pages/?product=${product.Id}">
+      <img src="${product.Image}" alt="${product.Name}" />
+      <h3 class="card__brand">${product.Brand.Name}</h3>
+      <h2 class="card__name">${product.NameWithoutBrand}</h2>
+      <p class="product-card__price">
+        <span class="original-price">$${product.SuggestedRetailPrice}</span>
+        <span class="final-price">$${product.FinalPrice}</span>
+      </p>
+      <p class="product-card__discount">${discount}% OFF</p>
+    </a>
+  </li>`;
 }
+
 
 export default class ProductList {
   constructor(category, dataSource, listElement) {
