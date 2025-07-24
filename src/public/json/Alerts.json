@@ -11,9 +11,9 @@
   },
 
   {
-  "message": "Summer Sale - 20% Off Tents!",
-  "background": "gradient",
-  "color": "white",
-  "class": "sale-alert"
-}
+    "message": "Summer Sale - 20% Off Tents!",
+    "background": "gradient",
+    "color": "white",
+    "class": "sale-alert"
+  }
 ]
