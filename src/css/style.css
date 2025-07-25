@@ -316,6 +316,7 @@ footer {
 .search-bar button:hover {
   background-color: var(--secondary-color);
 }
+
 /* Alert Component - Sleep Outside Theme */
 .alert-list {
   width: 100%;
@@ -415,3 +416,25 @@ footer {
 .alert-list .close-alert:hover {
   color: #e67e22;
 }
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.product-card__price {
+  text-decoration: line-through; /* Original price crossed out */
+  color: red; /* Color for original price */
+}
+
+.product-card__discounted-price {
+  font-size: 1.5em; /* Larger font for discounted price */
+  color: green; /* Color for discounted price */
+}
+
+.product-card__discount-amount {
+  font-weight: bold; /* Bold text for discount amount */
+  color: orange; /* Color for discount amount */
+}
+
