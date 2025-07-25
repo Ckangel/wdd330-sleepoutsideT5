@@ -59,6 +59,7 @@ export default class ProductDetails {
     return;
   }
 
+  // Render product details on the page
   renderProductDetails() {
     // Render HTML with product info
     productDetailsTemplate(this.product);
@@ -95,7 +96,7 @@ function productDetailsTemplate(product) {
     );
 
     const discountFlag = document.createElement("div");
-    discountFlag.classList.add("discount-flag"); // You can style this in CSS
+    discountFlag.classList.add("discount-flag");
     discountFlag.textContent = `Save $${discountAmount} (${discountPercent}%)`;
 
     // Insert discount flag above the image
