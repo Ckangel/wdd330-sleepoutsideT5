@@ -86,7 +86,7 @@ function productDetailsTemplate(product) {
   // Set button dataset for reference later
   document.getElementById("addToCart").dataset.id = product.Id;
 
-  // Show discount info if there's a discount
+  // Show discount info if there's a discount with highlight
   if (product.SuggestedRetailPrice > product.FinalPrice) {
     const discountAmount = (
       product.SuggestedRetailPrice - product.FinalPrice
@@ -99,7 +99,7 @@ function productDetailsTemplate(product) {
     discountFlag.classList.add("discount-flag");
     discountFlag.textContent = `Save $${discountAmount} (${discountPercent}%)`;
 
-    // Insert discount flag above the image
+    // Insert the discount flag above the image
     productImage.parentElement.insertBefore(discountFlag, productImage);
   }
 }
