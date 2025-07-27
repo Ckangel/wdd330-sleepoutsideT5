@@ -83,7 +83,7 @@ function productDetailsTemplate(product) {
     const discountPercent = Math.round((discountAmount / product.SuggestedRetailPrice) * 100);
 
     const discountFlag = document.createElement("div");
-    discountFlag.classList.add("discount-flag"); // You can style this in CSS
+    discountFlag.classList.add("discount-flag"); 
     discountFlag.textContent = `Save $${discountAmount} (${discountPercent}%)`;
 
     // Insert discount flag above the image
