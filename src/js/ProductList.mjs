@@ -1,8 +1,6 @@
 // Import utility functions
 import {
-  renderListWithTemplate,  // Helper to render a list using a template function
-  loadHeaderFooter,        // Loads reusable header and footer HTML
-  updateCartCount          // Updates the cart item count icon in the header
+
 } from "./utils.mjs";
 
 // Load header/footer and update cart icon count on page load
@@ -16,7 +14,7 @@ updateCartCount();
 function productCardTemplate(product) {
   // Calculate the discount percentage
   const discount = Math.round(
-    ((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100
+
   );
 
   return `<li class="product-card">
@@ -41,15 +39,13 @@ function productCardTemplate(product) {
  */
 export default class ProductList {
   constructor(category, dataSource, listElement) {
-    this.category = category;         // e.g., "tents", "backpacks", etc.
-    this.dataSource = dataSource;     // Instance of ProductData or ExternalServices
-    this.listElement = listElement;   // DOM element where the products should render
+
   }
 
   // Initialize the list rendering process
   async init() {
     const list = await this.dataSource.getData(); // Get product list from JSON or API
-    this.renderList(list);                        // Render list using template
+
   }
 
   // Renders the full product list using the template function

@@ -1,14 +1,4 @@
 // Import utility functions and modules
-import { getParam, loadHeaderFooter, updateCartCount } from "./utils.mjs"; 
-// getParam: extracts query parameters from the URL
-// loadHeaderFooter: injects the site header and footer
-// updateCartCount: updates the cart icon with number of items
-
-import ProductData from "./ProductData.mjs"; 
-// ProductData handles fetching product data from the API
-
-import ProductDetails from "./ProductDetails.mjs"; 
-// ProductDetails is the class responsible for rendering a single product’s details
 
 // Load header and footer on the page
 loadHeaderFooter();

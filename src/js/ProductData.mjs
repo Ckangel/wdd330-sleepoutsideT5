@@ -30,9 +30,7 @@ export default class ProductData {
   // Search products by name or brand based on a query
   async search(query) {
     const allProducts = await this.getData(); // Get all products
-    return allProducts.filter(product =>
-      product.Name.toLowerCase().includes(query.toLowerCase()) || // Match by product name
-      product.Brand.toLowerCase().includes(query.toLowerCase())   // Match by brand
+
     );
   }
 }

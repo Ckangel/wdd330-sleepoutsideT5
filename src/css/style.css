@@ -304,9 +304,7 @@ button {
   gap: 0.9em;
   margin: 0.5em 0;
 }
-#productPriceContainer {
-  margin: 1em 0;
-}
+
 .cart-qty-input {
   width: 60px;
   padding: 10px;
@@ -370,7 +368,7 @@ button {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1em;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
   width: 100%;
   max-width: 160px;
   background-color: #f9f9f9;
@@ -412,7 +410,6 @@ button {
   font-weight: bold;
   line-height: 1;
 }
-
 
 @media screen and (min-width: 500px) {
   body {

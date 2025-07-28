@@ -10,7 +10,7 @@ loadHeaderFooter();
 updateCartCount();
 
 // Get the category name from the query parameter (e.g., ?category=tents)
-const category = new URLSearchParams(window.location.search).get("category") || "tents";
+
 
 // Select the DOM element where the product list will be displayed
 const element = document.querySelector(".product-list");
