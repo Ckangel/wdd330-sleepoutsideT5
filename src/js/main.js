@@ -1,6 +1,6 @@
 // Import reusable utility functions and modules
 import { loadHeaderFooter, updateCartCount } from "./utils.mjs"; // Load common layout elements and update cart count
-import ProductData from "./ProductData.mjs"; // Handles data fetching for product categories
+import ProductData from "./ExternalServices.mjs"; // Handles data fetching for product categories
 import ProductList from "./ProductList.mjs"; // Handles rendering of product list to the DOM
 
 // Load header and footer into the page

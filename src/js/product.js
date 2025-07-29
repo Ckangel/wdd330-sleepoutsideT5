@@ -4,7 +4,7 @@ import { getParam, loadHeaderFooter, updateCartCount } from "./utils.mjs";
 // loadHeaderFooter: injects the site header and footer
 // updateCartCount: updates the cart icon with number of items
 
-import ProductData from "./ProductData.mjs";
+import ProductData from "./ExternalServices.mjs";
 // ProductData handles fetching product data from the API
 
 import ProductDetails from "./ProductDetails.mjs";
