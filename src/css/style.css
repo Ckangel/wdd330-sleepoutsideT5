@@ -438,31 +438,158 @@ button {
   line-height: 1;
 }
 
-/* checkout styles */
+/* --- Checkout Form Styles --- */
 .checkout-form {
-  padding: 0.5em;
-}
-.checkout-form label {
-  display: block;
-}
-.checkout-form input {
-  width: 100%;
-  font-size: 1.2em;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.checkout-summary > ul {
-  padding-left: 0;
-  list-style-type: none;
+.checkout-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
+
+/* Section Titles */
+.checkout-form fieldset {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background-color: #fafafa;
+}
+
+.checkout-form legend {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #00796b;
+  padding: 0 0.75rem;
+  margin-bottom: 1rem;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: inline-block;
+  position: relative;
+  top: -1.1rem;
+  left: 1rem;
+}
+
+
+/* Labels & Inputs */
+.checkout-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+  transition: border-color 0.3s;
+}
+
+.checkout-form input:focus {
+  border-color: #00897b;
+  outline: none;
+}
+
+/* Name and Address Grids */
+.checkout__name,
+.checkout__address {
+  display: grid;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Name: Two equal columns */
+.checkout__name {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Address: Four columns on large screens, wrap on small */
+.checkout__address {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+/* Label/Input Block */
+.checkout-form label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.checkout-form input:focus {
+  border-color: #00796b;
+  outline: none;
+}
+
+
+/* Order Summary */
+.checkout-summary ul {
+  padding: 0;
+  list-style: none;
+}
+
 .checkout-summary li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
 }
-.checkout-summary input {
-  width: 25%;
-  font-size: 1em;
+
+.checkout-summary label {
+  font-weight: 500;
+  margin: 0;
 }
+
+.checkout-summary p {
+  font-weight: 600;
+  margin: 0;
+  text-align: right;
+  color: #444;
+}
+
+/* Submit Button */
+#checkoutSubmit {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #00796b;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#checkoutSubmit:hover {
+  background-color: #004d40;
+}
+
+/* Responsive Tuning */
+@media (max-width: 600px) {
+  .checkout-form {
+    padding: 1rem;
+  }
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

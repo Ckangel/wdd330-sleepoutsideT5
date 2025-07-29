@@ -1,6 +1,6 @@
 import { getLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
-import displayCartTotal  from "./cart.js";
+import displayCartTotal from "./cart.js";
 
 const services = new ExternalServices();
 
@@ -26,7 +26,6 @@ function packageItems(items) {
   return simplifiedItems;
 }
 
-
 export default class CheckoutProcess {
   constructor(key, outputSelector) {
     this.key = key;
@@ -43,19 +42,25 @@ export default class CheckoutProcess {
     this.calculateItemSummary();
 
     // Optional: if you want to display cart total somewhere using the existing footer template
-    displayCartTotal(this.list, "#cart-footer-container", "cart-footer-template");
+    displayCartTotal(
+      this.list,
+      "#cart-footer-container",
+      "cart-footer-template",
+    );
   }
 
   calculateItemSummary() {
     const summaryElement = document.querySelector(
-      this.outputSelector + " #cartTotal"
+      this.outputSelector + " #cartTotal",
     );
     const itemNumElement = document.querySelector(
-      this.outputSelector + " #num-items"
+      this.outputSelector + " #num-items",
     );
     itemNumElement.innerText = this.list.length;
 
-    const amounts = this.list.map((item) => item.FinalPrice * (item.quantity || 1));
+    const amounts = this.list.map(
+      (item) => item.FinalPrice * (item.quantity || 1),
+    );
     this.itemTotal = amounts.reduce((sum, item) => sum + item, 0);
     summaryElement.innerText = `$${this.itemTotal.toFixed(2)}`;
   }
@@ -74,7 +79,9 @@ export default class CheckoutProcess {
   displayOrderTotals() {
     const tax = document.querySelector(`${this.outputSelector} #tax`);
     const shipping = document.querySelector(`${this.outputSelector} #shipping`);
-    const orderTotal = document.querySelector(`${this.outputSelector} #orderTotal`);
+    const orderTotal = document.querySelector(
+      `${this.outputSelector} #orderTotal`,
+    );
 
     tax.innerText = `$${this.tax.toFixed(2)}`;
     shipping.innerText = `$${this.shipping.toFixed(2)}`;
