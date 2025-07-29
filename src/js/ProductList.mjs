@@ -50,7 +50,7 @@ export default class ProductList {
 
   // Initialize the list rendering process
   async init() {
-    const list = await this.dataSource.getData(); // Get product list from JSON or API
+    const list = await this.dataSource.getData(this.category); // Get product list from  API
     this.renderList(list); // Render list using template
   }
 
