@@ -1,6 +1,6 @@
 // Import modules for fetching product data, rendering the product list,
 // and loading shared header/footer components and cart counter.
-import ProductData from "./ProductData.mjs"; // Handles fetching product data from the API
+import ExternalServices from "./ExternalServices.mjs"; // Handles fetching product data from the API
 import ProductList from "./ProductList.mjs"; // Manages rendering product cards into the DOM
 import { loadHeaderFooter, updateCartCount } from "./utils.mjs"; // Reusable layout and utility functions
 
@@ -19,7 +19,7 @@ const category = params.get("category") || "tents";
 const element = document.querySelector(".product-list");
 
 // Create an instance of ProductData with the selected category
-const dataSource = new ProductData(category);
+const dataSource = new ExternalServices(category);
 
 // Create a new ProductList instance with category, data source, and container element
 const productList = new ProductList(category, dataSource, element);

@@ -8,7 +8,7 @@ function convertToJson(res) {
 }
 
 // This class handles loading product data from a local JSON file
-export default class ProductData {
+export default class ExternalServices {
   constructor(category) {
     this.category = category;
     this.path = `../json/${this.category}.json`; // Path to the local JSON file for the category

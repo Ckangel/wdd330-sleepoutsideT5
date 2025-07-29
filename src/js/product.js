@@ -4,8 +4,8 @@ import { getParam, loadHeaderFooter, updateCartCount } from "./utils.mjs";
 // loadHeaderFooter: injects the site header and footer
 // updateCartCount: updates the cart icon with number of items
 
-import ProductData from "./ExternalServices.mjs";
-// ProductData handles fetching product data from the API
+import ExternalServices from "./ExternalServices.mjs";
+//  handles fetching product data from the API
 
 import ProductDetails from "./ProductDetails.mjs";
 // ProductDetails is the class responsible for rendering a single product’s details
@@ -20,7 +20,7 @@ updateCartCount();
 const productId = getParam("product");
 
 // Create a new instance of the data source (category passed is 'tents' by default)
-const dataSource = new ProductData("tents");
+const dataSource = new ExternalServices("tents");
 
 // Create an instance of the ProductDetails class with the productId and data source
 const product = new ProductDetails(productId, dataSource);

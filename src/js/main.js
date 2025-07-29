@@ -1,6 +1,6 @@
 // Import reusable utility functions and modules
 import { loadHeaderFooter, updateCartCount } from "./utils.mjs"; // Load common layout elements and update cart count
-import ProductData from "./ExternalServices.mjs"; // Handles data fetching for product categories
+import ExternalServices from "./ExternalServices.mjs"; // Handles data fetching for product categories
 import ProductList from "./ProductList.mjs"; // Handles rendering of product list to the DOM
 
 // Load header and footer into the page
@@ -17,7 +17,7 @@ const category =
 const element = document.querySelector(".product-list");
 
 // Create a data source instance with the selected category
-const dataSource = new ProductData(); // Updated to not require category in constructor
+const dataSource = new ExternalServices(); // Updated to not require category in constructor
 
 // Create a ProductList instance
 const productList = new ProductList(category, dataSource, element);
