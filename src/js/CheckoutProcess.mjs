@@ -1,5 +1,6 @@
 import { getLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
+import displayCartTotal  from "./cart.js";
 
 const services = new ExternalServices();
 
@@ -25,26 +26,6 @@ function packageItems(items) {
   return simplifiedItems;
 }
 
-function displayCartTotal(list, footerContainerSelector, templateId) {
-  const container = document.querySelector(footerContainerSelector);
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  if (list.length > 0) {
-    const total = list.reduce(
-      (sum, item) => sum + Number(item.FinalPrice) * (item.quantity || 1),
-      0
-    );
-
-    const template = document.getElementById(templateId);
-    if (template) {
-      const clone = template.content.cloneNode(true);
-      clone.querySelector(".cart-total-value").textContent = total.toFixed(2);
-      container.appendChild(clone);
-    }
-  }
-}
 
 export default class CheckoutProcess {
   constructor(key, outputSelector) {
@@ -90,7 +71,7 @@ export default class CheckoutProcess {
     this.displayOrderTotals();
   }
 
-  displayOrderTotals1() {
+  displayOrderTotals() {
     const tax = document.querySelector(`${this.outputSelector} #tax`);
     const shipping = document.querySelector(`${this.outputSelector} #shipping`);
     const orderTotal = document.querySelector(`${this.outputSelector} #orderTotal`);

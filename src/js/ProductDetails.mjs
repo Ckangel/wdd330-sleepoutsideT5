@@ -77,4 +77,23 @@ function productDetailsTemplate(product) {
     product.DescriptionHtmlSimple;
 
   document.querySelector("#add-to-cart").dataset.id = product.Id;
+
+
+
+  // Show discount info if there's a discount
+  if (product.SuggestedRetailPrice > product.FinalPrice) {
+    const discountAmount = (
+      product.SuggestedRetailPrice - product.FinalPrice
+    ).toFixed(2);
+    const discountPercent = Math.round(
+      (discountAmount / product.SuggestedRetailPrice) * 100,
+    );
+
+    const discountFlag = document.createElement("div");
+    discountFlag.classList.add("discount-flag"); 
+    discountFlag.textContent = `Save $${discountAmount} (${discountPercent}%)`;
+
+    // Insert discount flag above the image
+    productImage.parentElement.insertBefore(discountFlag, productImage);
+  }
 }
