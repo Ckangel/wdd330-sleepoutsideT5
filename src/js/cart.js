@@ -108,7 +108,7 @@ function updateItemQuantity(productId, newQty) {
 }
 
 // Calculate and display the total price in the cart footer
-function displayCartTotal() {
+export default function displayCartTotal() {
   const cartItems = getLocalStorage("so-cart") || [];
   const container = document.getElementById("cart-footer-container");
   container.innerHTML = "";

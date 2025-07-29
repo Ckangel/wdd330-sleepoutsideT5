@@ -1,46 +1,34 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sleep Outside | Product Make and Name</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/product.js" type="module"></script>
-  </head>
 
-  <body>
-    <header class="divider" id="main-header"></header>
-    <main class="divider">
-      <section class="product-detail">
-        <h2>Brand Name</h2>
-        <h3 class="divider">Product</h3>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleep Outside | Product Details</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/product.js" type="module"></script>
+</head>
 
-        <img
-          src="/images/tents/marmot-ajax-tent-3-person-3-season-in-pale-pumpkin-terracotta~p~880rr_01~320.jpg"
-          alt="Sleep Outside Camping Products"
-          id="productImage"
-          class="divider"
-        />
+<body>
+  <header class="divider" id="main-header"></header>
+  <main class="divider">
+    <section class="product-detail">
+      <h2>Product Details</h2>
+      <figure>
+        <img src="" alt="" id="p-image" width="300">
+      </figure>
+      <section id="product-info">
+        <h3 id="p-brand"></h3>
+        <p id="p-name"></p>
 
-        <!-- Price Section with Discount Support -->
-        <div id="productPriceContainer">
-          <span id="originalPrice" class="original-price"></span>
-          <span id="productPrice" class="final-price">$000.99</span>
-          <span id="discountBadge" class="discount-badge"></span>
-        </div>
-
-        <p id="productColor" class="product__color">Pale Pumpkin/Terracotta</p>
-        <p id="productDesc" class="product__description">
-          Get out and enjoy nature with Marmot&#39;s Ajax tent, featuring a
-          smart design with durable, waterproof construction and two doors for
-          easy access.
-        </p>
-
-        <div class="product-detail__add">
-          <button id="addToCart" data-id="productId">Add to Cart</button>
-        </div>
+        <p id="p-color"></p>
+        <p id="p-description"></p>
+        <p id="p-price"></p>
+        <button id="add-to-cart" data-id="">Add to Cart</button>
       </section>
-    </main>
-    <footer class="divider" id="main-footer"></footer>
-  </body>
+    </section>
+  </main>
+  <footer id="main-footer"></footer>
+</body>
+
 </html>
