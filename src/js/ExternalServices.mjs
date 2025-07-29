@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 const baseURL = import.meta.env.VITE_SERVER_URL || "http://localhost:3000";
+=======
+>>>>>>> 131edab3e14d4655682ebe3e5b88c15c36c55df5
 
 // Helper function to convert the response to JSON if the response is OK
 
@@ -11,6 +14,7 @@ function convertToJson(res) {
 }
 
 // This class handles loading product data from a local JSON file
+<<<<<<< HEAD
 export default class ExternalServices {
   constructor() {
     //this.category = category;
@@ -29,6 +33,8 @@ export default class ExternalServices {
     const products = await this.getData(); // Load product list
     return products.find((item) => item.Id === id); // Return the product matching the ID
   }
+=======
+>>>>>>> 131edab3e14d4655682ebe3e5b88c15c36c55df5
 
   // Search products by name or brand based on a query
   async search(query) {
