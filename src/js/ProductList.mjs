@@ -1,18 +1,5 @@
-// Import utility functions
-import {
-  renderListWithTemplate, // Helper to render a list using a template function
-  loadHeaderFooter, // Loads reusable header and footer HTML
-  updateCartCount, // Updates the cart item count icon in the header
-} from "./utils.mjs";
+import { renderListWithTemplate } from "./utils.mjs";
 
-// Load header/footer and update cart icon count on page load
-loadHeaderFooter();
-updateCartCount();
-
-/**
- * Returns an HTML string for one product card.
- * Displays image, brand, name, prices, and discount if applicable.
- */
 function productCardTemplate(product) {
   // Calculate the discount percentage
   const discount = Math.round(
@@ -20,21 +7,24 @@ function productCardTemplate(product) {
       product.SuggestedRetailPrice) *
       100,
   );
-
-  return `<li class="product-card">
-    <a href="product_pages/?product=${product.Id}">
-      <img src="${product.Image}" alt="${product.Name}" />
-      <h3 class="card__brand">${product.Brand.Name}</h3>
-      <h2 class="card__name">${product.NameWithoutBrand}</h2>
-      
+  return `
+    <li class="product-card">
+      <a href="/product_pages/?product=${product.Id}">
+        <img src="${product.Images.PrimaryMedium}" alt="${product.Name}">
+        <h3>${product.Brand.Name}</h3>
+        <p>${product.NameWithoutBrand}</p>
+      </a>
+    
+     
       <p class="product-card__price">
         <span class="original-price">$${product.SuggestedRetailPrice}</span>
         <span class="final-price">$${product.FinalPrice}</span>
       </p>
 
       <p class="product-card__discount">${discount}% OFF</p>
-    </a>
-  </li>`;
+      
+    </li>
+    `;
 }
 
 /**
@@ -50,8 +40,9 @@ export default class ProductList {
 
   // Initialize the list rendering process
   async init() {
-    const list = await this.dataSource.getData(); // Get product list from JSON or API
-    this.renderList(list); // Render list using template
+    const list = await this.dataSource.getData(this.category);
+    this.renderList(list);
+    document.querySelector(".title").textContent = this.category;
   }
 
   // Renders the full product list using the template function
