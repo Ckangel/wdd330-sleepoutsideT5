@@ -21,37 +21,47 @@ export default class ProductDetails {
       .addEventListener("click", this.addProductToCart.bind(this));
   }
 
+  addProductToCart() {
+    // Get current cart from localStorage
+    let cartItems = getLocalStorage("so-cart") || [];
 
+    // Ensure it's an array
+    if (!Array.isArray(cartItems)) {
+      cartItems = [];
+    }
 
+    // Check if the product already exists in the cart
+    const isDuplicate = cartItems.some((item) => item.Id === this.product.Id);
 
- addProductToCart() {
-  // Get current cart from localStorage
-  let cartItems = getLocalStorage("so-cart") || [];
+    if (isDuplicate) {
+      alert("This product is already in your cart.");
+      return; // Stop the function
+    }
 
-  // Ensure it's an array
-  if (!Array.isArray(cartItems)) {
-    cartItems = [];
+    // If not in cart, add with quantity 1
+    const productToAdd = { ...this.product, quantity: 1 };
+    cartItems.push(productToAdd);
+    setLocalStorage("so-cart", cartItems);
+
+    // Animate the cart icon
+    const cartIcon = document.querySelector(".cart-icon");
+    if (cartIcon) {
+      cartIcon.classList.add("cart-bounce");
+      // Remove the class after animation ends so it can be triggered again
+      cartIcon.addEventListener(
+        "animationend",
+        () => {
+          cartIcon.classList.remove("cart-bounce");
+        },
+        { once: true },
+      );
+    }
+
+    // Update cart icon count in header
+    updateCartCount();
+    alert("Product successfully added to cart.");
+    return;
   }
-
-  // Check if the product already exists in the cart
-  const isDuplicate = cartItems.some(item => item.Id === this.product.Id);
-
-  if (isDuplicate) {
-    alert("This product is already in your cart.");
-    return; // Stop the function
-  }
-
-  // If not in cart, add with quantity 1
-  const productToAdd = { ...this.product, quantity: 1 };
-  cartItems.push(productToAdd);
-   setLocalStorage("so-cart", cartItems);
-   
-     // Update cart icon count in header
-    updateCartCount()
-   alert("Product successfully added to cart.");
-   return;
-}
-
 
   renderProductDetails() {
     productDetailsTemplate(this.product);
@@ -78,8 +88,6 @@ function productDetailsTemplate(product) {
 
   document.querySelector("#add-to-cart").dataset.id = product.Id;
 
-
-
   // Show discount info if there's a discount
   if (product.SuggestedRetailPrice > product.FinalPrice) {
     const discountAmount = (
@@ -90,7 +98,7 @@ function productDetailsTemplate(product) {
     );
 
     const discountFlag = document.createElement("div");
-    discountFlag.classList.add("discount-flag"); 
+    discountFlag.classList.add("discount-flag");
     discountFlag.textContent = `Save $${discountAmount} (${discountPercent}%)`;
 
     // Insert discount flag above the image
